@@ -1,0 +1,34 @@
+{
+  "name": "angular2-2048",
+  "version": "1.0.0",
+  "description": "Angular2 clone of the popular 2048 game.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sachinphatak/angular2-2048.git"
+  },
+  "keywords": [
+    "Angular2",
+    "MEAN",
+    "2048",
+    "game"
+  ],
+  "author": "Sachin Phatak",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sachinphatak/angular2-2048/issues"
+  },
+  "engines": {
+    "node": "8.2.1"
+  },
+  "homepage": "https://github.com/sachinphatak/angular2-2048#readme",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "ejs": "^2.5.6",
+    "express": "^4.15.3",
+    "mongojs": "^2.4.0"
+  }
+}
