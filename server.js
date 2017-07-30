@@ -4,6 +4,7 @@ var path = require('path');
 
 var index = require('./routes/index');
 
+// Changing PORT env variable messes up heroku deployment
 var port = process.env.PORT;
 var app = express();
 
