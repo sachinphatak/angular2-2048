@@ -1,0 +1,15 @@
+<div class="game-container">
+    <div class="grid-container container">
+        <div class="row grid-row" *ngFor="let row of gridRows">
+            <div class="col-md-3 grid-cell" *ngFor="let cell of row">
+            </div>
+        </div>
+    </div>
+    <div class="tile-container">
+        <div class="tile" ng-class="'tile-' + tile.row + '-' + tile.col" ng-repeat="tile in tiles">
+            <!-- <div class="number-in-tile">
+                <center><h1>{{tile.numberInTile}}</h1></center>
+            </div> -->
+        </div>
+    </div>
+</div>

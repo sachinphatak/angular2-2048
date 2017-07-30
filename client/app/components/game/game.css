@@ -1,0 +1,86 @@
+.game-container {
+    background-color: #bbada0;
+    width: 450px;
+    height: 450px;
+    border-radius: 6px;
+    margin: 10px auto auto auto;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 12px;
+    box-sizing: border-box;
+}
+.grid-container {
+    position: absolute;
+    z-index: 1;
+    display: inline-block;
+}
+.grid-cell {
+    height: 97.5px;
+    width: 97.5px;
+    margin: 0 12px 12px 0;
+    background-color: rgba(238, 228, 218, 0.35);
+    border-radius: 3px;
+}
+.tile-container {
+    position:absolute;
+    z-index: 2;
+}
+.tile {
+    position: absolute;
+    width: 98px;
+    height: 98px;
+    background-color: #eee4da;
+    border-radius: 3px;
+}
+.tile-1-1 {
+    transform: translate(0, 0);
+}
+.tile-1-2 {
+    transform: translate(110px, 0);
+}
+.tile-1-3 {
+    transform: translate(220px, 0);
+}
+.tile-1-4 {
+    transform: translate(330px, 0);
+}
+.tile-2-1 {
+    transform: translate(0, 110px);
+}
+.tile-2-2 {
+    transform: translate(110px, 110px);
+}
+.tile-2-3 {
+    transform: translate(220px, 110px);
+}
+.tile-2-4 {
+    transform: translate(330px, 110px);
+}
+.tile-3-1 {
+    transform: translate(0, 220px);
+}
+.tile-3-2 {
+    transform: translate(110px, 220px);
+}
+.tile-3-3 {
+    transform: translate(220px, 220px);
+}
+.tile-3-4 {
+    transform: translate(330px, 220px);
+}
+.tile-4-1 {
+    transform: translate(0, 330px);
+}
+.tile-4-2 {
+    transform: translate(110px, 330px);
+}
+.tile-4-3 {
+    transform: translate(220px, 330px);
+}
+.tile-4-4 {
+    transform: translate(330px, 330px);
+}
+.tile.ng-class {
+    transition: 2s linear all;
+    -webkit-transition: 2s linear all;
+}
