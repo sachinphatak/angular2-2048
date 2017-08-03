@@ -80,7 +80,7 @@
 .tile-4-4 {
     transform: translate(330px, 330px);
 }
-.tile.ng-class {
-    transition: 2s linear all;
-    -webkit-transition: 2s linear all;
+.tile {
+    transition: 300ms linear all;
+    -webkit-transition: 300ms linear all;
 }

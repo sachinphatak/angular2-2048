@@ -1,14 +1,14 @@
 <div class="game-container">
     <div class="grid-container container">
-        <div class="row grid-row" *ngFor="let row of gridRows">
+        <div class="row grid-row" *ngFor="let row of grid">
             <div class="col-xs-3 grid-cell" *ngFor="let cell of row">
             </div>
         </div>
     </div>
-     <div *ngFor="let tileset of gridRows; let i=index">
-        <div *ngFor="let tile of tileset; let j=index">
-            <div class="tile-container tile" [ngClass]="'tile-' + (i+1) + '-' + (j+1)" *ngIf="tile.num">
-                <h1>{{tile.num}}</h1>
+     <div *ngFor="let tileRow of tiles; let i=index">
+        <div *ngFor="let tile of tileRow; let j=index">
+            <div class="tile-container tile" [ngClass]="'tile-' + (i+1) + '-' + (j+1)" *ngIf="tile">
+                <h1>{{tile}}</h1>
             </div>
         </div>
     </div> 
