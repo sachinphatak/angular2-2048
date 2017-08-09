@@ -100,7 +100,6 @@ var GameComponent = (function () {
             }
             rowGroups[tile.row].push({
                 col: tile.col,
-                row: tile.row,
                 index: index
             });
         });
@@ -123,7 +122,6 @@ var GameComponent = (function () {
                 colGroups[tile.col] = [];
             }
             colGroups[tile.col].push({
-                col: tile.col,
                 row: tile.row,
                 index: index
             });

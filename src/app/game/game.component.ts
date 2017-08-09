@@ -103,7 +103,6 @@ export class GameComponent {
             }
             rowGroups[tile.row].push({
                 col: tile.col,
-                row: tile.row,
                 index: index
             });
         });
@@ -128,7 +127,6 @@ export class GameComponent {
                 colGroups[tile.col] = [];
             }
             colGroups[tile.col].push({
-                col: tile.col,
                 row: tile.row,
                 index: index
             });
