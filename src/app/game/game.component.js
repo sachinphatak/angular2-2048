@@ -17,7 +17,6 @@ var GameComponent = (function () {
             { row: 2, col: 1, num: 8 },
             { row: 3, col: 4, num: 8 }
         ];
-        this.showTranspose = false;
         this.gridSize = [4, 4];
         this.grid = this.makeGrid();
     }
@@ -31,18 +30,6 @@ var GameComponent = (function () {
             grid.push(row);
         }
         return grid;
-    };
-    GameComponent.prototype.getTransposedTiles = function (tiles) {
-        var transposedGrid = [];
-        for (var i = 0; i < tiles[0].length; ++i) {
-            transposedGrid.push([]);
-        }
-        for (var i = 0; i < tiles[0].length; ++i) {
-            for (var j = 0; j < tiles.length; ++j) {
-                transposedGrid[i][j] = tiles[j][i];
-            }
-        }
-        return transposedGrid;
     };
     GameComponent.prototype.keypress = function (e) {
         if (e.key === 'ArrowRight') {
@@ -58,43 +45,30 @@ var GameComponent = (function () {
             this.moveDown();
         }
     };
-    GameComponent.prototype.toggleTranspose = function (horizontalOrVertical) {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            if (horizontalOrVertical === 'horizontal') {
-                if (_this.showTranspose) {
-                    _this.showTranspose = false;
-                    _this.tiles = _this.getTransposedTiles(_this.tiles);
-                    resolve();
-                }
-                else {
-                    resolve();
-                }
-            }
-            else if (horizontalOrVertical === 'vertical') {
-                if (_this.showTranspose) {
-                    resolve();
-                }
-                else {
-                    _this.showTranspose = true;
-                    _this.tiles = _this.getTransposedTiles(_this.tiles);
-                    resolve();
-                }
-            }
-        });
+    GameComponent.prototype.sortOnCol = function (a, b) {
+        if (a.col < b.col) {
+            return -1;
+        }
+        else if (a.col > b.col) {
+            return 1;
+        }
+        return 0;
     };
+    ;
+    GameComponent.prototype.sortOnRow = function (a, b) {
+        if (a.row < b.row) {
+            return -1;
+        }
+        else if (a.row > b.row) {
+            return 1;
+        }
+        return 0;
+    };
+    ;
     GameComponent.prototype.moveRight = function () {
         var colMax = this.gridSize[1];
         var tiles = this.tiles;
-        var sortOnCol = function (a, b) {
-            if (a.col < b.col) {
-                return -1;
-            }
-            else if (a.col > b.col) {
-                return 1;
-            }
-            return 0;
-        };
+        var sortOnCol = this.sortOnCol;
         var rowGroups = [];
         this.tiles.forEach(function (tile, index) {
             if (!rowGroups[tile.row]) {
@@ -118,15 +92,7 @@ var GameComponent = (function () {
     };
     GameComponent.prototype.moveLeft = function () {
         var tiles = this.tiles;
-        var sortOnCol = function (a, b) {
-            if (a.col < b.col) {
-                return -1;
-            }
-            else if (a.col > b.col) {
-                return 1;
-            }
-            return 0;
-        };
+        var sortOnCol = this.sortOnCol;
         var rowGroups = [];
         this.tiles.forEach(function (tile, index) {
             if (!rowGroups[tile.row]) {
@@ -150,15 +116,7 @@ var GameComponent = (function () {
     };
     GameComponent.prototype.moveUp = function () {
         var tiles = this.tiles;
-        var sortOnRow = function (a, b) {
-            if (a.row < b.row) {
-                return -1;
-            }
-            else if (a.row > b.row) {
-                return 1;
-            }
-            return 0;
-        };
+        var sortOnRow = this.sortOnRow;
         var colGroups = [];
         this.tiles.forEach(function (tile, index) {
             if (!colGroups[tile.col]) {
@@ -183,15 +141,7 @@ var GameComponent = (function () {
     GameComponent.prototype.moveDown = function () {
         var rowMax = this.gridSize[0];
         var tiles = this.tiles;
-        var sortOnRow = function (a, b) {
-            if (a.row < b.row) {
-                return -1;
-            }
-            else if (a.row > b.row) {
-                return 1;
-            }
-            return 0;
-        };
+        var sortOnRow = this.sortOnRow;
         var colGroups = [];
         this.tiles.forEach(function (tile, index) {
             if (!colGroups[tile.col]) {

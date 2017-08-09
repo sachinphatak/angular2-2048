@@ -25,19 +25,6 @@ export class GameComponent {
         return grid;
     }
 
-    getTransposedTiles (tiles: Array<Array<number>>): Array<Array<number>> {
-        var transposedGrid: Array<any> = [];
-        for (var i = 0; i < tiles[0].length; ++i) {
-            transposedGrid.push([]);
-        }
-        for (var i = 0; i < tiles[0].length; ++i) {
-            for (var j = 0; j < tiles.length; ++j) {
-                transposedGrid[i][j] = tiles[j][i];
-            }
-        }
-        return transposedGrid;
-    }
-
     grid: Array<Array<any>>;
 
     tiles = [
@@ -46,11 +33,6 @@ export class GameComponent {
         {row: 2, col: 1, num: 8},
         {row: 3, col: 4, num: 8}
     ];
-
-    transposedTiles: Array<Array<number>>;
-
-    showTranspose: boolean = false;
-    
 
     @HostListener('document:keydown', ['$event'])
     keypress (e: KeyboardEvent): void {
@@ -65,39 +47,28 @@ export class GameComponent {
         }
     }
 
-    toggleTranspose (horizontalOrVertical: string): any {
-        return new Promise((resolve, reject) => {
-            if (horizontalOrVertical === 'horizontal') {
-                if (this.showTranspose) {
-                    this.showTranspose = false;
-                    this.tiles = this.getTransposedTiles(this.tiles);
-                    resolve();
-                } else {
-                    resolve();
-                }
-            } else if (horizontalOrVertical === 'vertical') {
-                if (this.showTranspose) {
-                    resolve();
-                } else {
-                    this.showTranspose = true;
-                    this.tiles = this.getTransposedTiles(this.tiles);
-                    resolve();
-                }
-            }
-        });
-    }
+    sortOnCol (a: any, b: any): number {
+        if (a.col < b.col) {
+            return -1;
+        } else if (a.col > b.col) {
+            return 1;
+        }
+        return 0;
+    };
+
+    sortOnRow (a: any, b: any): number {
+        if (a.row < b.row) {
+            return -1;
+        } else if (a.row > b.row) {
+            return 1;
+        }
+        return 0;
+    };
 
     moveRight(): void {
         var colMax = this.gridSize[1];
         var tiles = this.tiles;
-        var sortOnCol = function (a, b) {
-            if (a.col < b.col) {
-                return -1;
-            } else if (a.col > b.col) {
-                return 1;
-            }
-            return 0;
-        };
+        var sortOnCol = this.sortOnCol;
 
         var rowGroups: Array<any> = [];
         this.tiles.forEach(function (tile, index) {
@@ -123,14 +94,7 @@ export class GameComponent {
 
     moveLeft(): void {
         var tiles = this.tiles;
-        var sortOnCol = function (a, b) {
-            if (a.col < b.col) {
-                return -1;
-            } else if (a.col > b.col) {
-                return 1;
-            }
-            return 0;
-        };
+        var sortOnCol = this.sortOnCol;
 
         var rowGroups: Array<any> = [];
         this.tiles.forEach(function (tile, index) {
@@ -156,14 +120,7 @@ export class GameComponent {
 
     moveUp (): void {
         var tiles = this.tiles;
-        var sortOnRow = function (a, b) {
-            if (a.row < b.row) {
-                return -1;
-            } else if (a.row > b.row) {
-                return 1;
-            }
-            return 0;
-        };
+        var sortOnRow = this.sortOnRow;
 
         var colGroups: Array<any> = [];
         this.tiles.forEach(function (tile, index) {
@@ -190,14 +147,7 @@ export class GameComponent {
     moveDown (): void {
         var rowMax = this.gridSize[0];
         var tiles = this.tiles;
-        var sortOnRow = function (a, b) {
-            if (a.row < b.row) {
-                return -1;
-            } else if (a.row > b.row) {
-                return 1;
-            }
-            return 0;
-        };
+        var sortOnRow = this.sortOnRow;
 
         var colGroups: Array<any> = [];
         this.tiles.forEach(function (tile, index) {
