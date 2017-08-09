@@ -5,11 +5,9 @@
             </div>
         </div>
     </div>
-     <div *ngFor="let tileRow of tiles; let i=index">
-        <div *ngFor="let tile of tileRow; let j=index">
-            <div class="tile-container tile" [ngClass]="'tile-' + (i+1) + '-' + (j+1)" *ngIf="tile">
-                <h1>{{tile}}</h1>
-            </div>
+    <div *ngFor="let tile of tiles">
+        <div class="tile-container tile" [ngClass]="'tile-' + tile.row + '-' + tile.col">
+            <h1>{{tile.num}}</h1>
         </div>
-    </div> 
+    </div>
 </div>
